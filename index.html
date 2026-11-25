@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Tag Manager (traffic on this page) -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S8XPG3');</script>
+<!-- End Google Tag Manager -->
+<title>Memryoshka</title>
+<meta name="description" content="Memryoshka is a training-free memory for streaming vision-language models. It stores each visual token as a nested code that can be shortened later, so a fixed 7.2 MB memory holds evidence from across a long video stream.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Memryoshka: Adaptive-Fidelity Video Memory for Streaming VLMs">
+<meta property="og:description" content="A training-free streaming video memory that can shorten stored token codes instead of deleting them. 7.2 MB for the whole stream.">
+<meta property="og:url" content="https://armenjeddi.github.io/memryoshka/">
+<meta property="og:image" content="https://armenjeddi.github.io/memryoshka/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://armenjeddi.github.io/memryoshka/assets/img/og.png">
+<link rel="canonical" href="https://armenjeddi.github.io/memryoshka/">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111418" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S8XPG3" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="wordmark" href="#top"><img src="assets/img/logo.svg" alt="" width="33" height="24">Memryoshka</a>
+    <nav class="nav-links" id="nav-links" aria-label="Sections">
+      <a href="#video">Video</a>
+      <a href="#demo">Demo</a>
+      <a href="#problem">Problem</a>
+      <a href="#method">How it works</a>
+      <a href="#results">Results</a>
+      <a href="#limits">Limits</a>
+      <a href="#citation">BibTeX</a>
+    </nav>
+    <div class="nav-actions" id="nav-actions">
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="Switch between light and dark theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<!-- side navigation on wide screens, built from the data-toc attributes below -->
+<nav class="toc" id="toc" aria-label="On this page"></nav>
+
+<main id="main">
+
+<!-- ============================== HERO ============================== -->
+<section class="hero" id="top">
+  <div class="hero-brand">
+    <img src="assets/img/logo.svg" alt="Three nesting dolls, each holding fewer blocks than the last" width="154" height="112">
+    <h1>Memryoshka</h1>
+  </div>
+  <p class="subtitle" id="subtitle">Adaptive-Fidelity Video Memory for Streaming VLMs</p>
+  <div class="authors" id="authors"></div>
+  <div class="affils" id="affils"></div>
+  <div class="author-note" id="author-note"></div>
+  <div class="logos" id="logos"></div>
+  <div class="buttons" id="buttons"></div>
+  <div id="draft-note"></div>
+</section>
+
+<!-- ============================== VIDEO: INTRO ============================== -->
+<figure class="fig video-intro" id="video" data-toc="Video">
+  <div class="video-card" data-label="Memryoshka in one minute" data-duration="1:03">
+    <video controls playsinline preload="metadata" poster="assets/img/poster_intro.jpg" width="1920" height="1080" aria-label="Memryoshka in one minute, a narrated video with captions">
+      <source src="video/memryoshka_intro.mp4" type="video/mp4">
+      <a href="video/memryoshka_intro.mp4">Download the video (MP4, 7.5 MB)</a>
+    </video>
+  </div>
+</figure>
+
+<!-- ============================== SUMMARY ============================== -->
+<section class="summary">
+  <p class="lede">A training-free memory for streaming vision-language models. Memryoshka stores each visual token as a nested code, so when memory fills, old evidence <strong>fades to fewer bits instead of being deleted</strong>.</p>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Storage</div>
+      <div class="value">~1,000&times; less</div>
+      <p class="desc"><strong>7.2&nbsp;MB</strong> instead of 6.6&nbsp;GB for one hour of full-precision visual tokens.</p>
+    </div>
+    <div class="stat">
+      <div class="label">Accuracy</div>
+      <div class="value">Same accuracy</div>
+      <p class="desc">as a memory that stores every token: six-benchmark average, same readout budget.</p>
+    </div>
+    <div class="stat">
+      <div class="label">Against memory baselines</div>
+      <div class="value">+6 to 8 points</div>
+      <p class="desc">six-benchmark average over CausalMem, the strongest bounded memory (+5.9 to +8.0).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== DEMO ============================== -->
+<section class="section" id="demo" data-toc="Demo">
+  <div class="prose">
+    <div class="kicker">Demo</div>
+    <h2>48 minutes of film in 7.2&nbsp;MB</h2>
+    <p class="lead">The paper's writer on four open films, one frame per second. Press play: Memryoshka keeps frames from the whole stream at fewer bits, while a full-precision memory of the same size holds only the last 3 frames.</p>
+  </div>
+
+  <figure class="fig wide" id="fig-stream">
+    <div class="fig-head">
+      <div class="fig-label"><span class="n">01</span> The memory as the stream grows</div>
+      <div class="fig-source">Demo on open films</div>
+    </div>
+    <div class="card">
+      <div class="stream-top">
+        <p class="stream-intro">Each column is one moment of video. <b>Height:</b> tokens kept (a whole frame is 252). <b>Color:</b> bits per kept token. Dimmed thumbnails have no frame left.</p>
+        <div class="ramp-legend" aria-label="Color scale: bits per kept token">
+          <span>Bits per token</span>
+          <span>
+            <span class="cells" id="ramp-cells"></span><br>
+            <span class="ticks"><span>128</span><span>256</span><span>512</span><span>1k</span><span>2k</span><span>4k</span></span>
+          </span>
+        </div>
+      </div>
+      <div class="strip" id="strip" aria-hidden="true"></div>
+      <div class="lanes">
+        <div class="lane-label"><b>Memryoshka</b><span class="stat-line" id="lane-ours-stat"></span></div>
+        <div class="lane main" id="lane-ours"><canvas role="img" aria-label="Tokens kept per second of video, colored by bits per token, for Memryoshka"></canvas></div>
+        <div class="lane-label"><b>Fixed 4,096-bit code</b>same writer, keep or drop<span class="stat-line" id="lane-fixed-stat"></span></div>
+        <div class="lane small" id="lane-fixed"><canvas role="img" aria-label="Tokens kept per second of video with a fixed 4,096-bit code"></canvas></div>
+        <div class="lane-label"><b>Full precision</b>16-bit tokens<span class="stat-line" id="lane-full-stat"></span></div>
+        <div class="lane small" id="lane-full"><canvas role="img" aria-label="Frames that fit in 7.2 MB at full precision"></canvas></div>
+        <div class="axis-row" id="axis-row"></div>
+      </div>
+      <div class="stream-stats">
+        <div><div class="k">Video seen</div><div class="v num" id="st-seen">0:00</div><div class="s" id="st-seen-s">of 47:52</div></div>
+        <div><div class="k">Memory used</div><div class="v num" id="st-mem">0 MB</div><div class="meter"><i id="st-mem-bar"></i></div></div>
+        <div><div class="k">Frames still in memory</div><div class="v num" id="st-frames">0</div><div class="s" id="st-frames-s"></div></div>
+        <div><div class="k">Code lengths in memory now</div><div class="v num" id="st-bits">-</div><div class="segbar" id="st-segbar"></div></div>
+      </div>
+      <div class="stream-foot">
+        <div class="controls" style="flex:1">
+          <button class="ctl-btn" id="s-play" type="button" aria-label="Play"></button>
+          <button class="ctl-btn" id="s-prev" type="button" aria-label="Back 30 seconds of video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="ctl-btn" id="s-next" type="button" aria-label="Forward 30 seconds of video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <input class="range" id="s-range" type="range" min="0" max="100" value="0" aria-label="Position in the stream">
+          <span class="time" id="s-time">0:00 / 47:52</span>
+          <select class="ctl-btn" id="s-speed" aria-label="Playback speed"><option value="0.5">0.5&times;</option><option value="1" selected>1&times;</option><option value="2">2&times;</option></select>
+        </div>
+      </div>
+    </div>
+  </figure>
+</section>
+
+<!-- ============================== PROBLEM ============================== -->
+<section class="section" id="problem" data-toc="The problem">
+  <div class="prose">
+    <div class="kicker">The problem</div>
+    <h2>An hour of video is 6.6&nbsp;GB of tokens</h2>
+    <p class="lead">Assistants on glasses and robots must store what they see before any question is asked, in a memory that cannot grow. At one frame per second, Qwen2.5-VL-7B turns an hour of video into about 920,000 visual tokens.</p>
+    <div class="cards3">
+      <div class="c"><div class="n">1</div><h4>Fewer frames</h4><p>Keep some moments, drop the rest.</p></div>
+      <div class="c"><div class="n">2</div><h4>Fewer tokens</h4><p>Keep the parts of a frame that matter.</p></div>
+      <div class="c hl"><div class="n">3</div><h4>Fewer bits</h4><p>Store each kept token with less precision.</p></div>
+    </div>
+    <p>Most streaming memories use only the first two and keep full precision. Yet visual tokens compress well along their feature dimension. <strong>Memryoshka uses all three, with one rule.</strong></p>
+  </div>
+
+  <figure class="fig wide" id="fig-savings" data-toc-sub="Where the saving comes from">
+    <div class="fig-head"><div class="fig-label"><span class="n">02</span> Where the saving comes from</div><div class="fig-source">Demo stream, at its end</div></div>
+    <p class="fig-lead">Storage after each step, on a log scale. <strong>Shorter codes give most of the saving.</strong></p>
+    <div class="card"><div id="savings-chart"></div></div>
+  </figure>
+</section>
+
+<!-- ============================== METHOD ============================== -->
+<section class="section" id="method" data-toc="How it works">
+  <div class="prose">
+    <div class="kicker">How it works</div>
+    <h2>Nested codes and one price per bit</h2>
+    <p class="lead">Three parts and no training. The only fitted part is a PCA basis, computed once on unlabeled video.</p>
+  </div>
+
+  <figure class="fig wide" id="video-how" data-toc-sub="Video: how it works">
+    <div class="fig-head"><div class="fig-label"><span class="n">Video</span> How it works with a vision-language model</div><div class="fig-source">1 minute, narrated</div></div>
+    <div class="video-card" data-duration="1:02">
+      <video controls playsinline preload="none" poster="assets/img/poster_how.jpg" width="1920" height="1080" aria-label="How Memryoshka works with a vision-language model, a narrated video with captions">
+        <source src="video/memryoshka_architecture.mp4" type="video/mp4">
+        <a href="video/memryoshka_architecture.mp4">Download the video (MP4, 4 MB)</a>
+      </video>
+    </div>
+  </figure>
+
+  <figure class="fig wide" id="fig-overview">
+    <div class="fig-head"><div class="fig-label"><span class="n">03</span> Overview</div><div class="fig-source">Paper, Figure 2</div></div>
+    <div class="card"><div class="paper-fig"><img src="assets/img/paper/overview.webp" alt="Overview: (a) visual tokens are encoded once into nested bit streams; (b) an online writer shortens or drops stored codes as a shared price rises; (c) at question time, text-conditioned retrieval picks codes, decodes them and passes them to the frozen reader." width="2000" height="577" loading="lazy"></div></div>
+  </figure>
+
+  <div class="prose">
+    <div class="step" id="step-codes" data-toc-sub="1. Nested codes"><div class="no">1</div><div>
+      <h3>Nested token codes</h3>
+      <p>Each token is projected onto 512 PCA directions and quantized to 8 bits per direction, 4,096 bits in all. The bits are ordered by how much each reduces the error, so <strong>any prefix decodes to an approximate token</strong>. Shortening a code drops its tail; nothing is re-encoded.</p>
+    </div></div>
+  </div>
+
+  <figure class="fig wide" id="fig-code">
+    <div class="fig-head"><div class="fig-label"><span class="n">04</span> One token's code</div><div class="fig-source">From the paper's PCA basis</div></div>
+    <p class="fig-lead">Pick a length to see which bits a prefix keeps and how much of the variance it keeps.</p>
+    <div class="card">
+      <div class="code-wrap">
+        <div>
+          <div class="len-picker" id="len-picker" role="group" aria-label="Code length in bits"></div>
+        </div>
+        <div class="code-grid" id="code-grid">
+          <canvas role="img" aria-label="The 4,096 bits of a token code; highlighted cells are the bits kept by the chosen prefix"></canvas>
+          <div class="code-axes"><span>&larr; PCA direction 1 (most variance)</span><span>Rows: bit 1 (top, most significant) to bit 8</span><span>direction 512 &rarr;</span></div>
+        </div>
+        <div class="code-row">
+          <div class="readout" id="code-readout"></div>
+          <div id="er-chart"></div>
+        </div>
+      </div>
+    </div>
+  </figure>
+
+  <div class="prose">
+    <div class="step" id="step-price" data-toc-sub="2. One price per bit"><div class="no">2</div><div>
+      <h3>One price per bit</h3>
+      <p>Each token is dropped or kept at one of eight code lengths, 32 to 4,096 bits. Its value grows with its attention in the vision encoder, how new its frame is, and the detail its prefix keeps. <strong>Every bit costs the same price.</strong> When memory fills, the price rises: codes get shorter, and the least useful tokens and frames are dropped.</p>
+    </div></div>
+  </div>
+
+  <figure class="fig wide" id="fig-price">
+    <div class="fig-head"><div class="fig-label"><span class="n">05</span> What one frame keeps as the price rises</div><div class="fig-source">Four frames of the demo</div></div>
+    <p class="fig-lead">Drag the price. Tokens first get shorter codes, then drop out.</p>
+    <div class="card">
+      <div class="price-wrap">
+        <div>
+          <div class="frame-view" id="frame-view">
+            <img id="frame-img" alt="">
+            <canvas id="frame-canvas" aria-hidden="true"></canvas>
+            <div class="badge" id="frame-badge"></div>
+            <div class="gone-msg" id="frame-gone"></div>
+          </div>
+          <div class="frame-tabs" id="frame-tabs" role="group" aria-label="Choose a frame"></div>
+          <div class="rule-box" id="price-rule"></div>
+        </div>
+        <div class="price-side">
+          <h4>Price per stored bit</h4>
+          <div class="big num" id="price-val">0</div>
+          <div class="muted" id="price-note" style="font-size:13.5px"></div>
+          <input class="range" id="price-range" type="range" min="0" max="1000" value="0" aria-label="Price per stored bit" style="width:100%">
+          <div class="marks" id="price-marks" role="group" aria-label="Prices the stream reached"></div>
+          <div class="mini-hist" id="price-hist"></div>
+          <div class="ramp-legend" style="margin-top:14px;display:flex;flex-direction:column;align-items:flex-start;gap:6px">
+            <span style="display:inline-flex;gap:8px;align-items:center">Kept token, border by length <span class="cells" id="ramp-cells-2"></span> <span class="muted">128 to 4,096 bits</span></span>
+            <span style="display:inline-flex;gap:8px;align-items:center"><span class="sw" style="background:var(--dropped-key)"></span>Dropped token</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </figure>
+
+  <div class="prose">
+    <div class="step" id="step-read" data-toc-sub="3. Reading"><div class="no">3</div><div>
+      <h3>Reading when a question arrives</h3>
+      <p>LongCLIP ranks the stored frames by similarity to the question. The best frames' most important tokens are decoded until the readout budget of 1,000 to 4,000 positions is used, and <strong>the frozen Qwen2.5-VL-7B</strong> reads them in time order.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============================== RESULTS ============================== -->
+<section class="section" id="results" data-toc="Results">
+  <div class="prose">
+    <div class="kicker">Results</div>
+    <h2>Matches an uncapped memory, beats bounded ones</h2>
+    <p class="lead">Frozen Qwen2.5-VL-7B reader, one frame per second, memories written before the questions are known.</p>
+  </div>
+
+  <figure class="fig wide" id="fig-main" data-toc-sub="Accuracy">
+    <div class="fig-head"><div class="fig-label"><span class="n">06</span> Accuracy at the same memory size</div><div class="fig-source">Paper, Table 1</div></div>
+    <ul class="findings">
+      <li><b>Long video.</b> Best bounded memory on all four benchmarks at every size: <strong>+12.3 to +14.1 points</strong> on LVBench and <strong>+28.9 to +33.9</strong> on TimeScope over CausalMem.</li>
+      <li><b>Streaming.</b> With the 4 newest frames added, best on StreamingBench and best six-benchmark average: <strong>+8.2 to +9.5 points</strong> over CausalMem.</li>
+    </ul>
+    <div class="card">
+      <div class="chart-head">
+        <div class="seg" id="budget-seg" role="group" aria-label="Memory budget"></div>
+        <div class="seg" id="view-seg" role="group" aria-label="Show as"></div>
+      </div>
+      <div id="main-table-view">
+        <p class="table-note"><b>Bold:</b> best bounded memory. Gray rows are references and are not ranked.</p>
+        <div class="table-wrap" id="main-table"></div>
+      </div>
+      <div id="main-chart-view" hidden>
+        <div class="legend" id="main-legend"></div>
+        <div id="main-chart"></div>
+      </div>
+    </div>
+  </figure>
+
+  <figure class="fig wide" id="fig-higher" data-toc-sub="Higher with less">
+    <div class="fig-head"><div class="fig-label"><span class="n">07</span> Higher with less</div><div class="fig-source">Paper, Table 1 and Figure 4</div></div>
+    <p class="fig-lead">Settings where Memryoshka scores above a reference that stores far more.</p>
+    <div class="card"><div class="table-wrap flush" id="higher-table"></div></div>
+  </figure>
+
+  <figure class="fig wide" id="fig-kv" data-toc-sub="Readout and KV caches">
+    <div class="fig-head"><div class="fig-label"><span class="n">08</span> Readout budget and KV-cache memories</div><div class="fig-source">Paper, Figure 3 (LVBench)</div></div>
+    <div class="card two-up">
+      <div>
+        <h4>Separate memory and readout budgets</h4>
+        <p class="panel-lead">With a 100&nbsp;MB memory, accuracy rises from 44.9% to <strong>50.5%</strong> as the readout grows from 1,000 to 8,000 positions. KeyRec and SAVEMem stay below 33%.</p>
+        <div class="paper-fig"><img src="assets/img/paper/readout_budget.svg" alt="Accuracy against readout budget for Memryoshka, KeyRec and SAVEMem." loading="lazy"></div>
+      </div>
+      <div>
+        <h4>Against streaming KV-cache memories</h4>
+        <p class="panel-lead"><strong>45.7 to 49.7%</strong> with 7.2 to 28.7&nbsp;MB, against 31.6 to 40.4% for KV caches storing 1.1 to 54.6&nbsp;GB: <strong>+5.3 points with about 450&times; less storage</strong>.</p>
+        <div class="paper-fig"><img src="assets/img/paper/kv_cache.svg" alt="Accuracy against stored memory per video for Memryoshka and five KV-cache methods, on a log scale." loading="lazy"></div>
+      </div>
+    </div>
+  </figure>
+
+  <figure class="fig wide" id="fig-tradeoff" data-toc-sub="Adaptive vs fixed length">
+    <div class="fig-head"><div class="fig-label"><span class="n">09</span> Adaptive vs one fixed code length</div><div class="fig-source">Paper, Table 2 (LVBench)</div></div>
+    <p class="fig-lead">The best fixed length changes with the memory size. Memryoshka picks lengths as it goes and <strong>matches or beats the best fixed length in 5 of 6 settings</strong>, 0.2 points behind in the sixth.</p>
+    <div class="card">
+      <div class="chart-head">
+        <div class="seg" id="ret-seg" role="group" aria-label="Retrieval"></div>
+        <div class="legend" id="trade-legend"></div>
+      </div>
+      <div class="smalls" id="trade-chart"></div>
+      <button class="toggle-link" id="trade-table-btn" type="button" aria-expanded="false">Show the numbers as a table</button>
+      <div class="table-wrap" id="trade-table" hidden></div>
+    </div>
+  </figure>
+
+  <figure class="fig wide" id="fig-beyond" data-toc-sub="Robots and audio">
+    <div class="fig-head"><div class="fig-label"><span class="n">10</span> Robots, and audio with video</div><div class="fig-source">Paper, Figure 4</div></div>
+    <div class="card two-up beyond-cards">
+      <div>
+        <h4>Robot policy memory (RMBench)</h4>
+        <div class="big">95% success with 256&nbsp;KiB</div>
+        <p class="vs"><strong>56&times; less storage</strong> than the policy's own history, which reaches 94%. Evenly spaced frames reach 92%.</p>
+        <div class="paper-fig"><img src="assets/img/paper/robot.svg" alt="Robot success rate against storage cap per episode." loading="lazy"></div>
+      </div>
+      <div>
+        <h4>Audio and video (LVOmniBench)</h4>
+        <div class="big">33.7% with 7.2&nbsp;MB</div>
+        <p class="vs">Above the full input's 32.0% with <strong>about 150&times; less storage</strong>. At 114.7&nbsp;MB the gain grows to <strong>5.5 points</strong>.</p>
+        <div class="paper-fig"><img src="assets/img/paper/audio.svg" alt="Audio-visual accuracy against memory per video." loading="lazy"></div>
+      </div>
+    </div>
+  </figure>
+
+  <div class="prose">
+    <details class="more" id="ablations" data-toc-sub="Ablations">
+      <summary>Ablations: what each part of the writer adds</summary>
+      <p class="table-note">Accuracy (%) with a readout of 1,000 positions. <b>Bold:</b> best in each column.</p>
+      <div class="table-wrap" id="abl-table"></div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================== LIMITS ============================== -->
+<section class="section" id="limits" data-toc="Limits">
+  <div class="prose">
+    <div class="kicker">Limits</div>
+    <h2>What it does not do</h2>
+    <ul class="limits">
+      <li><b>No built-in recency.</b> Retrieval by similarity misses questions about what is on screen now. Adding the 4 newest frames closes most of the gap on streaming benchmarks; SAVEMem stays best on OVO-Bench.</li>
+      <li><b>Retrieval is the bottleneck.</b> On LVBench at 7.2&nbsp;MB, reading at the annotated evidence times gives 55.8%, against 45.7% with LongCLIP.</li>
+      <li><b>A simple value estimate.</b> The writer guesses future usefulness from attention and novelty; better estimates could balance coverage and detail better.</li>
+      <li><b>Each question costs a prefill</b> of up to the readout budget. KV-cache memories pay per frame instead.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================== CITATION ============================== -->
+<section class="section" id="citation" data-toc="BibTeX">
+  <div class="prose">
+    <div class="kicker">Citation</div>
+    <h2>BibTeX</h2>
+    <div class="bib-wrap">
+      <pre class="bib" id="bibtex"></pre>
+      <button class="ctl-btn copy" id="copy-bib" type="button">Copy</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <span>&copy; 2026 The Memryoshka authors. Demo films &copy; Blender Foundation (CC BY). Video narration generated from an author's voice with Chatterbox.</span>
+    <span id="footer-links"></span>
+  </div>
+</footer>
+
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script src="site.config.js" defer></script>
+<script src="assets/data/results.js" defer></script>
+<script src="assets/data/code.js" defer></script>
+<script src="assets/data/frames.js" defer></script>
+<script src="assets/data/stream.js" defer></script>
+<script src="assets/js/common.js" defer></script>
+<script src="assets/js/page.js" defer></script>
+<script src="assets/js/video.js" defer></script>
+<script src="assets/js/fig-stream.js" defer></script>
+<script src="assets/js/fig-code.js" defer></script>
+<script src="assets/js/fig-price.js" defer></script>
+<script src="assets/js/fig-results.js" defer></script>
+<script src="assets/js/fig-extra.js" defer></script>
+</body>
+</html>

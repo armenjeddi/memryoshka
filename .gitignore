@@ -1,0 +1,12 @@
+# Private: the voice recording and the voice clips made from it. Never publish these (anyone could clone the voice).
+armen-sample-voice-reading-text.m4a
+video/voice/
+# Build outputs (frames, previews, intermediate audio)
+video/build/
+__pycache__/
+# Clean voice audio (the editing kit's narration tracks and the intro's soundtrack on its own); keep it out of the public repository too.
+video/kit/*.wav
+video/memryoshka_intro_audio.wav
+# Internal notes (publicity plan, maintainer notes with the pre-publishing checklist); keep them out of the public repository.
+LAUNCH_NOTES.md
+MAINTAINER_NOTES.md

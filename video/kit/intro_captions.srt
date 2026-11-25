@@ -1,0 +1,55 @@
+1
+00:00:05,100 --> 00:00:08,920
+Glasses and robots will watch for hours, and we'll ask them about what they saw.
+
+2
+00:00:09,070 --> 00:00:14,333
+But for a vision-language model, one hour of video is six and a half gigabytes of tokens.
+
+3
+00:00:14,483 --> 00:00:18,952
+Most memories cope by forgetting: they keep some frames in full and drop the rest.
+
+4
+00:00:19,102 --> 00:00:21,762
+Memryoshka stores each token as a nested code,
+
+5
+00:00:21,612 --> 00:00:25,637
+a shorter code inside a longer one, just like Russian Matryoshka dolls.
+
+6
+00:00:25,787 --> 00:00:30,361
+As memory fills, one price per bit decides what to shorten and what to drop.
+
+7
+00:00:32,787 --> 00:00:36,378
+Here, forty-eight minutes of film stream into seven megabytes.
+
+8
+00:00:36,228 --> 00:00:39,709
+Frames from start to finish stay in memory, at lower detail.
+
+9
+00:00:39,559 --> 00:00:42,595
+At full precision, the same memory would hold three.
+
+10
+00:00:44,287 --> 00:00:47,763
+On six benchmarks it matches a memory that keeps everything,
+
+11
+00:00:47,613 --> 00:00:54,026
+with about a thousand times less storage on hour-long videos, and beats existing memories by six to eight points.
+
+12
+00:00:54,176 --> 00:00:57,573
+It also works for robots, and for audio and video together.
+
+13
+00:00:57,723 --> 00:00:59,293
+No training needed.
+
+14
+00:00:59,143 --> 00:01:01,610
+Memryoshka: fade, don't forget.

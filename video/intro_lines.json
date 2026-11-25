@@ -1,0 +1,48 @@
+[
+  {
+    "id": "title",
+    "text": "",
+    "silent": true,
+    "min": 4.6
+  },
+  {
+    "id": "watch",
+    "text": "Glasses and robots will watch for hours, and we'll ask them about what they saw."
+  },
+  {
+    "id": "heavy",
+    "text": "But for a vision-language model, one hour of video is six and a half gigabytes of tokens."
+  },
+  {
+    "id": "forget",
+    "text": "Most memories cope by forgetting: they keep some frames in full and drop the rest."
+  },
+  {
+    "id": "nested",
+    "text": "Memryoshka stores each token as a nested code, a shorter code inside a longer one, just like Russian Matryoshka dolls."
+  },
+  {
+    "id": "price",
+    "text": "As memory fills, one price per bit decides what to shorten and what to drop.",
+    "min": 7.0
+  },
+  {
+    "id": "stream",
+    "text": "Here, forty-eight minutes of film stream into seven megabytes. Frames from start to finish stay in memory, at lower detail. At full precision, the same memory would hold three.",
+    "min": 11.5
+  },
+  {
+    "id": "numbers",
+    "text": "On six benchmarks it matches a memory that keeps everything, with about a thousand times less storage on hour-long videos, and beats existing memories by six to eight points."
+  },
+  {
+    "id": "beyond",
+    "text": "It also works for robots, and for audio and video together."
+  },
+  {
+    "id": "end",
+    "text": "No training needed. Memryoshka: fade, don't forget.",
+    "tail": 1.6,
+    "say": "No training needed. Memryoshka. Fade... don't forget."
+  }
+]

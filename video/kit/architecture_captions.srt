@@ -1,0 +1,59 @@
+1
+00:00:00,500 --> 00:00:03,963
+How Memryoshka works with a vision-language model.
+
+2
+00:00:04,263 --> 00:00:08,628
+Each incoming frame goes through the model's own vision encoder,
+
+3
+00:00:08,478 --> 00:00:12,712
+which turns it into about two hundred and fifty visual tokens.
+
+4
+00:00:13,012 --> 00:00:17,099
+The encoder's attention marks the tokens that matter most,
+
+5
+00:00:16,949 --> 00:00:20,832
+and a small CLIP model gives each frame one search tag.
+
+6
+00:00:21,132 --> 00:00:26,200
+Each token is projected onto five hundred and twelve fixed directions,
+
+7
+00:00:26,050 --> 00:00:29,431
+quantized, and written as a nested bit stream.
+
+8
+00:00:29,731 --> 00:00:31,901
+The memory has a fixed size.
+
+9
+00:00:31,751 --> 00:00:38,825
+When it fills up, one price per bit shortens codes and drops the least useful tokens and frames.
+
+10
+00:00:39,125 --> 00:00:42,884
+When a question arrives, it is matched against the search tags,
+
+11
+00:00:42,734 --> 00:00:46,207
+and the best-matching frames are decoded from their codes.
+
+12
+00:00:46,507 --> 00:00:50,158
+The decoded tokens go back to their places, with timestamps,
+
+13
+00:00:50,008 --> 00:00:53,601
+and the frozen language model reads them with the question.
+
+14
+00:00:53,901 --> 00:00:55,344
+Nothing is trained.
+
+15
+00:00:55,194 --> 00:01:00,514
+The vision encoder, the language model and the search model all stay frozen.

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "title",
+    "text": "How Memryoshka works with a vision-language model."
+  },
+  {
+    "id": "encode",
+    "text": "Each incoming frame goes through the model's own vision encoder, which turns it into about two hundred and fifty visual tokens."
+  },
+  {
+    "id": "signals",
+    "text": "The encoder's attention marks the tokens that matter most, and a small CLIP model gives each frame one search tag."
+  },
+  {
+    "id": "code",
+    "text": "Each token is projected onto five hundred and twelve fixed directions, quantized, and written as a nested bit stream."
+  },
+  {
+    "id": "write",
+    "text": "The memory has a fixed size. When it fills up, one price per bit shortens codes and drops the least useful tokens and frames.",
+    "min": 7.5
+  },
+  {
+    "id": "query",
+    "text": "When a question arrives, it is matched against the search tags, and the best-matching frames are decoded from their codes."
+  },
+  {
+    "id": "read",
+    "text": "The decoded tokens go back to their places, with timestamps, and the frozen language model reads them with the question."
+  },
+  {
+    "id": "frozen",
+    "text": "Nothing is trained. The vision encoder, the language model and the search model all stay frozen.",
+    "tail": 1.6
+  }
+]
