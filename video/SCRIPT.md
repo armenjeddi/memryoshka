@@ -1,7 +1,6 @@
 # Memryoshka videos: scripts (final, 20 Nov 2026)
 
-There are two videos, both 1920 x 1080 at 30 fps with captions burned in. The narration was generated from an author's
-own voice with Chatterbox. Every number matches the paper or the demo stream.
+There are two videos, both 1920 x 1080 at 30 fps with captions burned in. Every number matches the paper or the demo stream.
 
 ## 1. Intro, about 60 seconds (`memryoshka_intro.mp4`)
 
@@ -16,7 +15,7 @@ own voice with Chatterbox. Every number matches the paper or the demo stream.
 | stream | Here, forty-eight minutes of film stream into seven megabytes. Frames from start to finish stay in memory, at lower detail. At full precision, the same memory would hold three. | The real replay on the four films, with thumbnails and film names. |
 | numbers | On six benchmarks it matches a memory that keeps everything, with about a thousand times less storage on hour-long videos, and beats existing memories by six to eight points. | Three numbers: about 1,000 times less storage (with how it breaks down in the demo), same accuracy, +6 to 8 points. |
 | beyond | It also works for robots, and for audio and video together. | Two cards: 95% robot success with 256 KiB; 33.7% audio-visual accuracy with 7.2 MB. |
-| end | No training needed. Memryoshka: fade, don't forget. (The voice model reads "fade" as "fahd", so the clip joins "No training needed. Memryoshka." from one take with "Fade, don't forget." read from the spelling "Feyd"; see `fade_fix2.py`.) | Logo, title, "Visit https://armenjeddi.github.io/memryoshka", and the narration and film credits. |
+| end | No training needed. Memryoshka: fade, don't forget. | Logo, title and "Visit https://armenjeddi.github.io/memryoshka". |
 
 ## 2. How it works, about 60 seconds (`memryoshka_architecture.mp4`)
 

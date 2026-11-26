@@ -34,7 +34,7 @@ async def shoot(p, name, width, height, scheme, sections):
 async def main():
     async with async_playwright() as p:
         secs = ["#top", "#video", ".summary", "#fig-stream", "#problem", "#fig-savings", "#fig-code", "#fig-price", "#video-how", "#fig-main", "#fig-higher", "#fig-kv", "#fig-tradeoff",
-                "#fig-beyond", "#limits", "#citation"]
+                "#fig-beyond", "#takeaways", "#citation"]
         await shoot(p, "desk", 1400, 900, "light", secs)
         await shoot(p, "dark", 1400, 900, "dark", ["#top", "#video", "#video-how", "#fig-stream", "#fig-code", "#fig-price", "#fig-main", "#fig-tradeoff"])
         await shoot(p, "phone", 390, 844, "light", ["#top", "#video", ".summary", "#fig-stream", "#fig-savings", "#fig-price", "#fig-higher", "#fig-beyond"])

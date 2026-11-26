@@ -57,8 +57,7 @@ tools/                     scripts that produced the figure data and that check 
 
 `video/memryoshka_intro.mp4` (63 s) and `video/memryoshka_architecture.mp4` (62 s) are drawn frame by frame by
 `video/stage.html`, from the same data as the figures, and rendered by `video/render.py` with captions burned in.
-`video/SCRIPT.md` lists the narration of each scene and where each number comes from. The narration was generated from
-an author's own voice with Chatterbox (Resemble AI, MIT license).
+`video/SCRIPT.md` lists the narration of each scene and where each number comes from.
 
 ## Credits
 

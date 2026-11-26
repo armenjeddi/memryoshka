@@ -387,8 +387,10 @@ details.more summary { cursor: pointer; color: var(--link); font-size: 15px; }
 .cards3 .c.hl h4 { color: var(--ours); }
 .quote { font: italic 400 20px/1.55 var(--serif); color: var(--ink-2); border-left: 2px solid var(--line-2); padding: 2px 0 2px 18px; margin: 0 0 28px; }
 .quote cite { display: block; font: normal 400 13.5px var(--sans); color: var(--ink-3); margin-top: 6px; }
-.limits li { margin-bottom: 12px; }
-.limits li b { font-weight: 600; }
+.takeaways { padding-left: 22px; }
+.takeaways li { margin-bottom: 14px; padding-left: 4px; }
+.takeaways li::marker { color: var(--ours); font-weight: 600; }
+.takeaways li b { font-weight: 600; color: var(--ink); }
 .step { display: grid; grid-template-columns: 34px 1fr; gap: 6px; margin-top: 46px; }
 .step .no { font: italic 500 26px/1.2 var(--serif); color: var(--ours); }
 .step h3 { margin: 0 0 10px; }

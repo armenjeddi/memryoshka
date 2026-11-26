@@ -10,3 +10,13 @@ video/memryoshka_intro_audio.wav
 # Internal notes (publicity plan, maintainer notes with the pre-publishing checklist); keep them out of the public repository.
 LAUNCH_NOTES.md
 MAINTAINER_NOTES.md
+# Voice tools used to make the narration: kept on disk, not published.
+video/clone_best.py
+video/clone_voice.py
+video/fade_fix.py
+video/fade_fix2.py
+video/phoneme_check.py
+video/pron_lab.py
+video/voice_check.py
+video/voice_lab.py
+video/voice_sweep.py

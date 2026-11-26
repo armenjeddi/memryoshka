@@ -353,8 +353,6 @@
     V.text("Memryoshka", W / 2, 500, { font: V.serif(112, 500), align: "center" });
     V.text("Adaptive-Fidelity Video Memory for Streaming VLMs", W / 2, 570, { font: V.serif(42, 400, true), color: C.ink2, align: "center" });
     V.text("Visit https://armenjeddi.github.io/memryoshka", W / 2, 680, { font: V.sans(36, 600), color: C.ours, align: "center" });
-    V.text("Narration: the author’s voice, generated from a recording of it with Chatterbox (open source). Films © Blender Foundation, CC BY.",
-      W / 2, 60, { font: V.sans(20), color: C.ink3, align: "center" });
     ctx.restore();
   };
 })();

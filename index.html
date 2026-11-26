@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <a href="#problem">Problem</a>
       <a href="#method">How it works</a>
       <a href="#results">Results</a>
-      <a href="#limits">Limits</a>
+      <a href="#takeaways">Takeaways</a>
       <a href="#citation">BibTeX</a>
     </nav>
     <div class="nav-actions" id="nav-actions">
@@ -115,13 +115,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="prose">
     <div class="kicker">Demo</div>
     <h2>48 minutes of film in 7.2&nbsp;MB</h2>
-    <p class="lead">The paper's writer on four open films, one frame per second. Press play: Memryoshka keeps frames from the whole stream at fewer bits, while a full-precision memory of the same size holds only the last 3 frames.</p>
+    <p class="lead">The paper's writer on four <a href="https://studio.blender.org/films/">Blender open films</a> (CC BY), one frame per second. Press play: Memryoshka keeps frames from the whole stream at fewer bits, while a full-precision memory of the same size holds only the last 3 frames.</p>
   </div>
 
   <figure class="fig wide" id="fig-stream">
     <div class="fig-head">
       <div class="fig-label"><span class="n">01</span> The memory as the stream grows</div>
-      <div class="fig-source">Demo on open films</div>
+      
     </div>
     <div class="card">
       <div class="stream-top">
@@ -179,7 +179,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
   <figure class="fig wide" id="fig-savings" data-toc-sub="Where the saving comes from">
-    <div class="fig-head"><div class="fig-label"><span class="n">02</span> Where the saving comes from</div><div class="fig-source">Demo stream, at its end</div></div>
+    <div class="fig-head"><div class="fig-label"><span class="n">02</span> Where the saving comes from</div></div>
     <p class="fig-lead">Storage after each step, on a log scale. <strong>Shorter codes give most of the saving.</strong></p>
     <div class="card"><div id="savings-chart"></div></div>
   </figure>
@@ -194,7 +194,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
   <figure class="fig wide" id="video-how" data-toc-sub="Video: how it works">
-    <div class="fig-head"><div class="fig-label"><span class="n">Video</span> How it works with a vision-language model</div><div class="fig-source">1 minute, narrated</div></div>
+    <div class="fig-head"><div class="fig-label"><span class="n">Video</span> How it works with a vision-language model</div></div>
     <div class="video-card" data-duration="1:02">
       <video controls playsinline preload="none" poster="assets/img/poster_how.jpg" width="1920" height="1080" aria-label="How Memryoshka works with a vision-language model, a narrated video with captions">
         <source src="video/memryoshka_architecture.mp4" type="video/mp4">
@@ -204,7 +204,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </figure>
 
   <figure class="fig wide" id="fig-overview">
-    <div class="fig-head"><div class="fig-label"><span class="n">03</span> Overview</div><div class="fig-source">Paper, Figure 2</div></div>
+    <div class="fig-head"><div class="fig-label"><span class="n">03</span> Overview</div></div>
     <div class="card"><div class="paper-fig"><img src="assets/img/paper/overview.webp" alt="Overview: (a) visual tokens are encoded once into nested bit streams; (b) an online writer shortens or drops stored codes as a shared price rises; (c) at question time, text-conditioned retrieval picks codes, decodes them and passes them to the frozen reader." width="2000" height="577" loading="lazy"></div></div>
   </figure>
 
@@ -216,7 +216,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
   <figure class="fig wide" id="fig-code">
-    <div class="fig-head"><div class="fig-label"><span class="n">04</span> One token's code</div><div class="fig-source">From the paper's PCA basis</div></div>
+    <div class="fig-head"><div class="fig-label"><span class="n">04</span> One token's code</div></div>
     <p class="fig-lead">Pick a length to see which bits a prefix keeps and how much of the variance it keeps.</p>
     <div class="card">
       <div class="code-wrap">
@@ -243,7 +243,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
   <figure class="fig wide" id="fig-price">
-    <div class="fig-head"><div class="fig-label"><span class="n">05</span> What one frame keeps as the price rises</div><div class="fig-source">Four frames of the demo</div></div>
+    <div class="fig-head"><div class="fig-label"><span class="n">05</span> What one frame keeps as the price rises</div></div>
     <p class="fig-lead">Drag the price. Tokens first get shorter codes, then drop out.</p>
     <div class="card">
       <div class="price-wrap">
@@ -290,7 +290,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
   <figure class="fig wide" id="fig-main" data-toc-sub="Accuracy">
-    <div class="fig-head"><div class="fig-label"><span class="n">06</span> Accuracy at the same memory size</div><div class="fig-source">Paper, Table 1</div></div>
+    <div class="fig-head"><div class="fig-label"><span class="n">06</span> Accuracy at the same memory size</div></div>
     <ul class="findings">
       <li><b>Long video.</b> Best bounded memory on all four benchmarks at every size: <strong>+12.3 to +14.1 points</strong> on LVBench and <strong>+28.9 to +33.9</strong> on TimeScope over CausalMem.</li>
       <li><b>Streaming.</b> With the 4 newest frames added, best on StreamingBench and best six-benchmark average: <strong>+8.2 to +9.5 points</strong> over CausalMem.</li>
@@ -312,30 +312,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </figure>
 
   <figure class="fig wide" id="fig-higher" data-toc-sub="Higher with less">
-    <div class="fig-head"><div class="fig-label"><span class="n">07</span> Higher with less</div><div class="fig-source">Paper, Table 1 and Figure 4</div></div>
+    <div class="fig-head"><div class="fig-label"><span class="n">07</span> Higher with less</div></div>
     <p class="fig-lead">Settings where Memryoshka scores above a reference that stores far more.</p>
     <div class="card"><div class="table-wrap flush" id="higher-table"></div></div>
   </figure>
 
   <figure class="fig wide" id="fig-kv" data-toc-sub="Readout and KV caches">
-    <div class="fig-head"><div class="fig-label"><span class="n">08</span> Readout budget and KV-cache memories</div><div class="fig-source">Paper, Figure 3 (LVBench)</div></div>
+    <div class="fig-head"><div class="fig-label"><span class="n">08</span> Readout budget and KV-cache memories</div></div>
     <div class="card two-up">
       <div>
         <h4>Separate memory and readout budgets</h4>
-        <p class="panel-lead">With a 100&nbsp;MB memory, accuracy rises from 44.9% to <strong>50.5%</strong> as the readout grows from 1,000 to 8,000 positions. KeyRec and SAVEMem stay below 33%.</p>
+        <p class="panel-lead">On LVBench with a 100&nbsp;MB memory, accuracy rises from 44.9% to <strong>50.5%</strong> as the readout grows from 1,000 to 8,000 positions. KeyRec and SAVEMem stay below 33%.</p>
         <div class="paper-fig"><img src="assets/img/paper/readout_budget.svg" alt="Accuracy against readout budget for Memryoshka, KeyRec and SAVEMem." loading="lazy"></div>
       </div>
       <div>
         <h4>Against streaming KV-cache memories</h4>
-        <p class="panel-lead"><strong>45.7 to 49.7%</strong> with 7.2 to 28.7&nbsp;MB, against 31.6 to 40.4% for KV caches storing 1.1 to 54.6&nbsp;GB: <strong>+5.3 points with about 450&times; less storage</strong>.</p>
+        <p class="panel-lead">On LVBench, <strong>45.7 to 49.7%</strong> with 7.2 to 28.7&nbsp;MB, against 31.6 to 40.4% for KV caches storing 1.1 to 54.6&nbsp;GB: <strong>+5.3 points with about 450&times; less storage</strong>.</p>
         <div class="paper-fig"><img src="assets/img/paper/kv_cache.svg" alt="Accuracy against stored memory per video for Memryoshka and five KV-cache methods, on a log scale." loading="lazy"></div>
       </div>
     </div>
   </figure>
 
   <figure class="fig wide" id="fig-tradeoff" data-toc-sub="Adaptive vs fixed length">
-    <div class="fig-head"><div class="fig-label"><span class="n">09</span> Adaptive vs one fixed code length</div><div class="fig-source">Paper, Table 2 (LVBench)</div></div>
-    <p class="fig-lead">The best fixed length changes with the memory size. Memryoshka picks lengths as it goes and <strong>matches or beats the best fixed length in 5 of 6 settings</strong>, 0.2 points behind in the sixth.</p>
+    <div class="fig-head"><div class="fig-label"><span class="n">09</span> Adaptive vs one fixed code length</div></div>
+    <p class="fig-lead">On LVBench, the best fixed length changes with the memory size. Memryoshka picks lengths as it goes and <strong>matches or beats the best fixed length in 5 of 6 settings</strong>, 0.2 points behind in the sixth.</p>
     <div class="card">
       <div class="chart-head">
         <div class="seg" id="ret-seg" role="group" aria-label="Retrieval"></div>
@@ -348,7 +348,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </figure>
 
   <figure class="fig wide" id="fig-beyond" data-toc-sub="Robots and audio">
-    <div class="fig-head"><div class="fig-label"><span class="n">10</span> Robots, and audio with video</div><div class="fig-source">Paper, Figure 4</div></div>
+    <div class="fig-head"><div class="fig-label"><span class="n">10</span> Robots, and audio with video</div></div>
     <div class="card two-up beyond-cards">
       <div>
         <h4>Robot policy memory (RMBench)</h4>
@@ -374,17 +374,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </section>
 
-<!-- ============================== LIMITS ============================== -->
-<section class="section" id="limits" data-toc="Limits">
+<!-- ============================== TAKEAWAYS ============================== -->
+<section class="section" id="takeaways" data-toc="Takeaways">
   <div class="prose">
-    <div class="kicker">Limits</div>
-    <h2>What it does not do</h2>
-    <ul class="limits">
-      <li><b>No built-in recency.</b> Retrieval by similarity misses questions about what is on screen now. Adding the 4 newest frames closes most of the gap on streaming benchmarks; SAVEMem stays best on OVO-Bench.</li>
-      <li><b>Retrieval is the bottleneck.</b> On LVBench at 7.2&nbsp;MB, reading at the annotated evidence times gives 55.8%, against 45.7% with LongCLIP.</li>
-      <li><b>A simple value estimate.</b> The writer guesses future usefulness from attention and novelty; better estimates could balance coverage and detail better.</li>
-      <li><b>Each question costs a prefill</b> of up to the readout budget. KV-cache memories pay per frame instead.</li>
-    </ul>
+    <div class="kicker">Takeaways</div>
+    <h2>What we take away</h2>
+    <ol class="takeaways">
+      <li><b>Fewer bits can beat fewer frames.</b> Under a fixed budget, keeping more of the video at lower detail can beat keeping a few moments in full detail.</li>
+      <li><b>Same accuracy with about 1,000&times; less storage.</b> A 7.2&nbsp;MB memory matches one that keeps every visual token, averaged over six benchmarks.</li>
+      <li><b>Best bounded memory on long video, with no training.</b> <strong>+12.3 to +14.1 points</strong> on LVBench and <strong>+28.9 to +33.9</strong> on TimeScope over CausalMem.</li>
+      <li><b>Retrieval is the key.</b> Reading the frames at the annotated evidence times lifts the same 7.2&nbsp;MB memory from 45.7% to <strong>55.8%</strong> on LVBench. Better retrieval would make more of the stored evidence useful.</li>
+      <li><b>Memory needs better benchmarks.</b> On streaming benchmarks, keeping only the last few frames already scores well (SimpleStream), so a high score does not show long-term recall. The field needs benchmarks that test memory over long streams.</li>
+    </ol>
   </div>
 </section>
 
@@ -404,7 +405,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <footer>
   <div class="inner">
-    <span>&copy; 2026 The Memryoshka authors. Demo films &copy; Blender Foundation (CC BY). Video narration generated from an author's voice with Chatterbox.</span>
+    <span>&copy; 2026 The Memryoshka authors.</span>
     <span id="footer-links"></span>
   </div>
 </footer>
