@@ -143,12 +143,6 @@
     catch (e) { ev.target.textContent = "Select and copy"; }
     setTimeout(() => (ev.target.textContent = "Copy"), 1600);
   });
-  const foot = $("#footer-links");
-  const footLinks = [["Paper", links.paper], ["Code", links.code]].filter(([, u]) => u);
-  footLinks.forEach(([t, u], i) => {
-    if (i) foot.appendChild(document.createTextNode("  ·  "));
-    foot.appendChild(el("a", { href: u, text: t }));
-  });
 
   M.fillRampCells($("#ramp-cells"));
   M.fillRampCells($("#ramp-cells-2"));
